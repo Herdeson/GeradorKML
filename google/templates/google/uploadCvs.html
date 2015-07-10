@@ -1,0 +1,39 @@
+{% extends "google/blank.html" %}
+{% block cabecalho_conteudo %}   
+<h2>Importar CSV</h2>   
+    <h5>Campo utilizado para importar dados</h5>
+
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <form role="form" method="POST" enctype="multipart/form-data" >
+                                        
+                                        <div class="form-group">
+                                            {% csrf_token %}
+                                            {{ form }}
+                                        </div>                                
+
+ 
+                                        <button type="submit" class="btn btn-default">Enviar</button>
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+
+                                    </form>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+</div>
+                <!-- /. ROW  -->
+               
+{% endblock %}
