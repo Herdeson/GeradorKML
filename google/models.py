@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from GeradorKML.models import Controle
+from .forms import TURNO
 # Create your models here.
 
 
@@ -14,7 +15,7 @@ class LocationHistory(Controle):
     origem = models.CharField(max_length=10)
     device_tag = models.IntegerField()
     plataforma = models.CharField(max_length=150)
-    turno = models.CharField(blank=True, null=True, max_length= 2)
+    turno = models.CharField(blank=True, null=True, max_length= 1, choices=TURNO)
     
     
     def __str__(self):

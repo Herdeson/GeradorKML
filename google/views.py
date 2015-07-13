@@ -2,13 +2,14 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 from django.views import generic
-from django.template.context_processors import csrf
+from django.template.context_processors import csrf, request
 import csv
 import os
 from .forms import UploadCvs, FiltroForm
 from .models import LocationHistory
 from GeradorKML.settings import MEDIA_ROOT
 from datetime import date
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # Create your views here.
@@ -34,6 +35,17 @@ def importa_CVS(f):
         novo.plataforma = row[8]
         
         novo.status = True
+        
+        if(novo.hora >= '07:00' and novo.hora <'12:00'):
+            novo.turno = '1' #Manhã
+        elif (novo.hora >= '12:00' and novo.hora < '18:00'):
+            novo.turno ='2' #Tarde
+        elif (novo.hora >= '18:00' and novo.hora < '00:00'):
+            novo.turno = '3' #Noite
+        else:
+            novo.turno = '4'
+            
+        
         
         novo.save()
         
@@ -90,14 +102,54 @@ def listarDados(request):
     if request.POST:
         form = FiltroForm(request.POST)
         if form.is_valid():
+            where = ''
+            if form.conta !=  '':
+                where = where + 'conta_icontains = ' + form.conta
+
             return HttpResponseRedirect('branco')
     
     
     form = FiltroForm()
     lista = LocationHistory.objects.order_by('-dataCriacao')
-    c.update({'lista':lista})
     
-    return render(request, 'google/lista.html', {'form':form, 'lista':lista})
+    paginator = Paginator(lista , 30)
+    page = request.GET.get('page')
+    
+    try:
+        location = paginator.page(page)
+    except PageNotAnInteger:
+        location = paginator.page(1)
+    except EmptyPage:
+        location = paginator.page(paginator.num_pages)
+    
+    c.update({'lista':location , 'form':form})
+    return render(request, 'google/lista.html', c)
+
+
+def listarnovo(request):
+    """
+    Lembrar de fazer as alterações para buscar objetos relacionados a pessoa
+    """
+    c= {}
+    c.update(csrf(request))
+    
+    lista = LocationHistory.objects.order_by('-dataCriacao')
+    
+    paginator = Paginator(lista , 15)
+    page = request.GET.get('page')
+    
+    try:
+        location = paginator.page(page)
+    except PageNotAnInteger:
+        location = paginator.page(1)
+    except EmptyPage:
+        location = paginator.page(paginator.num_pages)
+    
+    c.update({'lista':location })
+    return render(request, 'google/lista_novo.html', c)
+
+
+
 
 class ListarDados(generic.ListView):
     template_name='google/lista.html'

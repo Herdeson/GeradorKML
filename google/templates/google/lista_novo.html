@@ -1,0 +1,108 @@
+{% extends "google/blank.html" %}
+{% load staticfiles %}
+{% block in_head %}
+     <!-- TABLE STYLES-->
+    <link href={% static "assets/js/dataTables/dataTables.bootstrap.css" %} rel="stylesheet" />
+    <link href={% static 'assets/css/bootstrap-datepicker.css' %} rel="stylesheet" />
+{% endblock %}
+{% block cabecalho_conteudo %}
+    <h2>Listagem - Location History</h2>   
+    <h5>Campo utilizado para importar dados</h5>
+{% endblock %}
+{% block conteudo %}
+<!-- Inicio do Panel do Formulario-->
+
+                <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Listagem
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" >
+                                    <thead>
+                                        <tr>
+                                            <th>Conta</th>
+                                            <th>Data</th>
+                                            <th>Turno</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Origem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in lista %}
+                                        <tr >
+                                            <td>{{ item.conta }}</td>
+                                            <td>{{ item.data }}</td>
+                                            <td>{{ item.turno }}</td>
+                                            <td class="center">{{ item.latitude }}</td>
+                                            <td class="center">{{ item.longitude }}</td>
+                                            <td>{{ item.origem }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+<nav>
+  <ul class="pagination">
+     {% if lista.has_previous %}
+        <li ><a href="?page={{ lista.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li><a href="?page={{ lista.previous_page_number }}">{{ lista.previous_page_number }}</a></li>
+     {% else %}
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+     {% endif %}
+
+    <li class="active"><a href="#">{{ lista.number }} <span class="sr-only">(current)</span></a></li>
+
+    {% if lista.has_next %}
+         <li><a href="?page={{ lista.next_page_number }}">{{ lista.next_page_number }}</a></li>
+         <li><a href="?page={{ lista.paginator.num_pages }}">{{ lista.paginator.num_pages }}</a></li>
+         <li><a href="?page={{ lista.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>   
+    {% else %}
+        <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    {% endif %}
+    
+
+  </ul>
+</nav>
+
+                            </div>
+
+
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+        <!-- /. ROW  -->
+{% endblock %}
+{% block javascript %}
+ <!-- DATA TABLE SCRIPTS -->
+    <script src={% static "assets/js/dataTables/jquery.dataTables.js" %}></script>
+    <script src={% static "assets/js/dataTables/dataTables.bootstrap.js" %}></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+ <!-- DatePicker bootstrap -->
+    <script src={% static "assets/js/bootstrap-datepicker.js" %}></script>
+    <script type="text/javascript">
+     $(document).ready(function () {
+        $('.input-daterange').datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR",
+            orientation: "right"
+        });
+      });
+    </script>
+
+  
+{% endblock %}
+
+                
+           
