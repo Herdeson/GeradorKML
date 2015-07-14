@@ -97,22 +97,45 @@ def listarDados(request):
     Lembrar de fazer as alterações para buscar objetos relacionados a pessoa
     """
     c= {}
+    lista = None
     c.update(csrf(request))
+    form = FiltroForm(request.POST or None)
     
     if request.POST:
-        form = FiltroForm(request.POST)
         if form.is_valid():
             where = ''
-            if form.conta !=  '':
-                where = where + 'conta_icontains = ' + form.conta
+            if form.cleaned_data['conta'] !=  '':
+                lista = LocationHistory.objects.filter(conta__icontains = form.data['conta'])
+           
+            
+            paginator = Paginator(lista , 15)
+            
+            try:
+                location = paginator.page(1)
+            except EmptyPage:
+                location = paginator.page(paginator.num_pages)
+            
+            c.update({'lista':location , 'form':form})
+            if len(location.object_list) > 0:
+                request.session['consulta'] = True
+                request.session['conta'] = form.data['conta']
+                #request.session['periodo'] = form.data['periodo']
+                #request.session['wifi'] = form.data['wifi']
+                #request.session['cell'] = form.data['cell']
+                request.session['dtInicio'] = form.data['dtInicio']
+                request.session['dtFim'] = form.data['dtFim']
+            
+            
+                
+            
+            return render(request, 'google/lista.html', c)
 
-            return HttpResponseRedirect('branco')
+            
     
     
-    form = FiltroForm()
-    lista = LocationHistory.objects.order_by('-dataCriacao')
+    lista = LocationHistory.objects.order_by('dataCriacao')
     
-    paginator = Paginator(lista , 30)
+    paginator = Paginator(lista , 15)
     page = request.GET.get('page')
     
     try:
