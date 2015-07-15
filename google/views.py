@@ -104,14 +104,40 @@ def listarDados(request):
     
     if request.POST:
         if form.is_valid():
+            request.session['consulta'] = True
             if 'conta' in form.changed_data:
                 lista = LocationHistory.objects.filter(conta__icontains = form.data['conta'])
-            if lista is None and  'periodo' in form.changed_data:
-                lista = lista.filter(turno = form.data['periodo'])
+                request.session['conta'] = form.data['conta']
+            if 'periodo' in form.changed_data:
+                request.session['periodo'] = form.data['periodo']
+                if lista is None:
+                    lista = LocationHistory.objects.filter(turno = form.data['periodo'])
+                else:
+                    lista = lista.filter(turno = form.data['periodo'])
+            if 'wifi' in form.changed_data and 'cell' not in form.changed_data:
+                request.session['wifi'] = form.data['wifi']
+                if lista is None:
+                    lista = LocationHistory.objects.filter(origem='WIFI')
+                else:
+                    lista = lista.filter(origem='WIFI')
+            elif 'wifi' not in form.changed_data and 'cell' in form.changed_data:
+                request.session['cell'] = form.data['cell']
+                if lista is None:
+                    lista = LocationHistory.objects.filter(origem='CELL')
+                else:
+                    lista = lista.filter(origem='CELL')
+            if 'dtInicio' in form.changed_data and 'dtFim' in form.changed_data:
+                inicio = datetime.strptime(form.data['dtInicio'], '%d/%m/%Y').date()
+                fim = datetime.strptime(form.data['dtFim'], '%d/%m/%Y').date()
+                if lista is None:
+                    lista = LocationHistory.objects.filter(data__range=(inicio, fim))
+                else:
+                    lista = lista.filter(data__range=(inicio, fim))
                 
-                
-           
-            
+                request.session['dtInicio'] = form.data['dtInicio']
+                request.session['dtFim'] = form.data['dtFim']
+
+                           
             paginator = Paginator(lista , 15)
             
             try:
@@ -119,20 +145,14 @@ def listarDados(request):
             except EmptyPage:
                 location = paginator.page(paginator.num_pages)
             
-            c.update({'lista':location , 'form':form})
-            if len(location.object_list) > 0:
-                request.session['consulta'] = True
-                request.session['conta'] = form.data['conta']
-                #request.session['periodo'] = form.data['periodo']
-                #request.session['wifi'] = form.data['wifi']
-                #request.session['cell'] = form.data['cell']
-                request.session['dtInicio'] = form.data['dtInicio']
-                request.session['dtFim'] = form.data['dtFim']
-
-            
+            c.update({'lista':location , 'form':form})             
+                
             return render(request, 'google/lista.html', c)
 
             
+    elif request.GET and request.session.has_key('consulta'):
+        pass
+        
     
     
     lista = LocationHistory.objects.order_by('dataCriacao')
@@ -149,7 +169,6 @@ def listarDados(request):
     
     c.update({'lista':location , 'form':form})
     return render(request, 'google/lista.html', c)
-
 
 def listarnovo(request):
     """
