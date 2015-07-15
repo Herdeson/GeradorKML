@@ -81,11 +81,12 @@ def upload_CVS(request):
             #Deletar o arquivo que foi realizado Upload
             os.remove(arquivo)
             
-            hj = date.today()
-            lista = LocationHistory.objects.filter(dataCriacao = hj)
-            form = FiltroForm()
-            c.update({'lista':lista,'form':form })
-            return render_to_response('google/lista.html', c )
+            #hj = date.today()
+            #lista = LocationHistory.objects.filter(dataCriacao = hj)
+            #form = FiltroForm()
+            #c.update({'lista':lista,'form':form })
+            return HttpResponseRedirect('listarGoogle')
+            #return render_to_response('google/lista.html', c )
             
     
     form = UploadCvs()
@@ -103,9 +104,12 @@ def listarDados(request):
     
     if request.POST:
         if form.is_valid():
-            where = ''
-            if form.cleaned_data['conta'] !=  '':
+            if 'conta' in form.changed_data:
                 lista = LocationHistory.objects.filter(conta__icontains = form.data['conta'])
+            if lista is None and  'periodo' in form.changed_data:
+                lista = lista.filter(turno = form.data['periodo'])
+                
+                
            
             
             paginator = Paginator(lista , 15)
@@ -124,9 +128,7 @@ def listarDados(request):
                 #request.session['cell'] = form.data['cell']
                 request.session['dtInicio'] = form.data['dtInicio']
                 request.session['dtFim'] = form.data['dtFim']
-            
-            
-                
+
             
             return render(request, 'google/lista.html', c)
 
