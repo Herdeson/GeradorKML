@@ -8,7 +8,7 @@ import os
 from .forms import UploadCvs, FiltroForm
 from .models import LocationHistory
 from GeradorKML.settings import MEDIA_ROOT
-from datetime import date
+from datetime import date , datetime
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
@@ -115,13 +115,13 @@ def listarDados(request):
                 else:
                     lista = lista.filter(turno = form.data['periodo'])
             if 'wifi' in form.changed_data and 'cell' not in form.changed_data:
-                request.session['wifi'] = form.data['wifi']
+                request.session['wifi'] = 'WIFI'
                 if lista is None:
                     lista = LocationHistory.objects.filter(origem='WIFI')
                 else:
                     lista = lista.filter(origem='WIFI')
             elif 'wifi' not in form.changed_data and 'cell' in form.changed_data:
-                request.session['cell'] = form.data['cell']
+                request.session['cell'] = 'CELL'
                 if lista is None:
                     lista = LocationHistory.objects.filter(origem='CELL')
                 else:
@@ -137,7 +137,8 @@ def listarDados(request):
                 request.session['dtInicio'] = form.data['dtInicio']
                 request.session['dtFim'] = form.data['dtFim']
 
-                           
+            
+                       
             paginator = Paginator(lista , 15)
             
             try:
@@ -151,7 +152,48 @@ def listarDados(request):
 
             
     elif request.GET and request.session.has_key('consulta'):
-        pass
+        if request.session.has_key('conta'):
+            lista = LocationHistory.objects.filter(conta__icontains = request.session.get('conta'))
+        if request.session.has_key('periodo'):
+            if lista is None:
+                lista = LocationHistory.objects.filter(turno = request.session.get('periodo'))
+            else:
+                lista = lista.filter(turno = request.session.get('periodo')) 
+        if request.session.has_key('wifi') and not request.session.has_key('cell'):
+            if lista is None:
+                lista = LocationHistory.objects.filter(origem = 'WIFI')
+            else:
+                lista = lista.filter(origem = 'WIFI')
+        elif  request.session.has_key('cell') and not request.session.has_key('wifi'):
+            if lista is None:
+                lista = LocationHistory.objects.filter(origem = 'CELL')
+            else:
+                lista = lista.filter(origem = 'CELL')
+        if request.session.has_key('dtInicio') and request.session.has_key('dtFim'):
+            inicio = datetime.strptime(request.session['dtInicio'], '%d/%m/%Y').date()
+            fim = datetime.strptime(request.session['dtFim'], '%d/%m/%Y').date()
+            
+            if lista is None:
+                lista = LocationHistory.objects.filter(data__range=(inicio, fim))
+            else:
+                lista = lista.filter(data__range=(inicio, fim))
+
+                        
+        paginator = Paginator(lista , 15)
+        page = request.GET.get('page')
+            
+        try:
+            location = paginator.page(page)
+        except EmptyPage:
+            location = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            location = paginator.page(1)
+            
+        c.update({'lista':location , 'form':form})             
+                
+        return render(request, 'google/lista.html', c)            
+            
+        
         
     
     
