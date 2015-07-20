@@ -5,6 +5,7 @@ from django.views import generic
 from django.template.context_processors import csrf, request
 import csv
 import os
+import simplekml
 from .forms import UploadCvs, FiltroForm
 from .models import LocationHistory
 from GeradorKML.settings import MEDIA_ROOT
@@ -93,6 +94,45 @@ def upload_CVS(request):
     c.update({'form':form })
     return render(request, 'google/uploadCvs.html', c )
 
+def GerarKML(lista):
+    anterior = None
+    alt_pt = 0
+    
+    kml = simplekml.Kml()
+    
+    for elemento in lista:
+        if anterior is None:
+            anterior = elemento.data
+            centro_long = elemento.longitude
+            centro_lat = elemento.latitude
+            #coords.append((centro_long, centro_lat, alt_pt))
+            pnt = kml.newpoint( name = anterior, coords=[(centro_long, centro_lat, alt_pt)])
+            pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
+            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora+"\n"+"Local: "+ elemento.origem
+        elif elemento.data == anterior:
+            centro_long = elemento.longitude
+            centro_lat = elemento.latitude
+            #coords.append((centro_long, centro_lat, alt_pt))
+            pnt = kml.newpoint( name = anterior , coords=[(centro_long, centro_lat, alt_pt)])
+            pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
+            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora +"\n"+"Local: "+ elemento.origem
+        else:
+            #r = random.randrange(0,256,3)
+            #g = random.randrange(0,256,3)
+            #b = random.randrange(0,256,3)
+            
+            kml.save(MEDIA_ROOT+"/"+elemento.conta+'_'+anterior+".kml")
+            
+            kml = simplekml.Kml()
+            anterior = elemento.data
+            centro_long = elemento.longitude
+            centro_lat = elemento.latitude
+            pnt = kml.newpoint( name = anterior , coords=[(centro_long, centro_lat, alt_pt)])
+            pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
+            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora+"\n"+"Local: "+ elemento.origem    
+    
+
+
 def listarDados(request):
     """
     Lembrar de fazer as alterações para buscar objetos relacionados a pessoa
@@ -104,6 +144,7 @@ def listarDados(request):
     
     if request.POST:
         if form.is_valid():
+            
             request.session['consulta'] = True
             if 'conta' in form.changed_data:
                 lista = LocationHistory.objects.filter(conta__icontains = form.data['conta'])
@@ -137,18 +178,21 @@ def listarDados(request):
                 request.session['dtInicio'] = form.data['dtInicio']
                 request.session['dtFim'] = form.data['dtFim']
 
-            
-                       
-            paginator = Paginator(lista , 15)
-            
-            try:
-                location = paginator.page(1)
-            except EmptyPage:
-                location = paginator.page(paginator.num_pages)
-            
-            c.update({'lista':location , 'form':form})             
+            if 'filtrar' in request.POST:
+                paginator = Paginator(lista , 15)
                 
-            return render(request, 'google/lista.html', c)
+                try:
+                    location = paginator.page(1)
+                except EmptyPage:
+                    location = paginator.page(paginator.num_pages)
+                
+                c.update({'lista':location , 'form':form})             
+                    
+                return render(request, 'google/lista.html', c)
+        
+            elif 'gerar' in request.POST:
+                GerarKML(lista)
+                return HttpResponseRedirect("branco")
 
             
     elif request.GET and request.session.has_key('consulta'):
