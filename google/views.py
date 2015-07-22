@@ -98,6 +98,7 @@ def GerarKML(lista):
     anterior = None
     alt_pt = 0
     
+    ultimo = lista.last()
     kml = simplekml.Kml()
     
     for elemento in lista:
@@ -106,30 +107,32 @@ def GerarKML(lista):
             centro_long = elemento.longitude
             centro_lat = elemento.latitude
             #coords.append((centro_long, centro_lat, alt_pt))
-            pnt = kml.newpoint( name = anterior, coords=[(centro_long, centro_lat, alt_pt)])
+            pnt = kml.newpoint( name = elemento.conta , coords=[(centro_long, centro_lat, alt_pt)])
             pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
-            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora+"\n"+"Local: "+ elemento.origem
+            pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora)+"\n"+"Local: "+ str(elemento.origem)
         elif elemento.data == anterior:
             centro_long = elemento.longitude
             centro_lat = elemento.latitude
             #coords.append((centro_long, centro_lat, alt_pt))
-            pnt = kml.newpoint( name = anterior , coords=[(centro_long, centro_lat, alt_pt)])
+            pnt = kml.newpoint( name = elemento.conta , coords=[(centro_long, centro_lat, alt_pt)])
             pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
-            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora +"\n"+"Local: "+ elemento.origem
-        else:
-            #r = random.randrange(0,256,3)
-            #g = random.randrange(0,256,3)
-            #b = random.randrange(0,256,3)
+            pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora) +"\n"+"Local: "+ str(elemento.origem)
             
-            kml.save(MEDIA_ROOT+"/"+elemento.conta+'_'+anterior+".kml")
+            if elemento.id == ultimo.id:
+                kml.save(MEDIA_ROOT+"/"+  str(anterior) +".kml")
+                
+        else:
+
+            
+            kml.save(MEDIA_ROOT+"/"+ str(anterior)+".kml")
             
             kml = simplekml.Kml()
             anterior = elemento.data
             centro_long = elemento.longitude
             centro_lat = elemento.latitude
-            pnt = kml.newpoint( name = anterior , coords=[(centro_long, centro_lat, alt_pt)])
+            pnt = kml.newpoint( name = elemento.conta , coords=[(centro_long, centro_lat, alt_pt)])
             pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
-            pnt.style.balloonstyle.text = 'Data: '+ anterior +"\n"+"Hora: "+ elemento.hora+"\n"+"Local: "+ elemento.origem    
+            pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora)+"\n"+"Local: "+ str(elemento.origem)    
     
 
 
