@@ -1,0 +1,40 @@
+{% extends "google/blank.html" %}
+{% load staticfiles %}
+{% block cabecalho_conteudo %}  
+{% endblock %}
+{% block conteudo %}
+           <div class="row">
+                <div class="col-md-2 col-sm-2">
+           
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            LOGIN
+                        </div>
+                        <div class="panel-body">
+
+                        <form role="form" method="POST"  >
+                                        {% csrf_token %}
+
+                                        <div class="form-group">
+                                            <label>Usuário</label>
+                                            <input type="text" id='username' name='username' class="form-control" />
+                                            <label>Senha</label>
+                                            <input type="password" id='password' name='password' class="form-control" />
+                                        </div> 
+
+                                        <button type="submit" class="btn btn-primary">Login</button>
+
+                                    </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+            
+                </div>
+            </div>
+
+{% endblock %}
+               

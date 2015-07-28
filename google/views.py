@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
-from django.template.context_processors import csrf, request
+from django.template.context_processors import csrf
+from django.template import RequestContext
 import csv
 import os
 import simplekml
@@ -11,6 +12,9 @@ from .models import LocationHistory
 from GeradorKML.settings import MEDIA_ROOT
 from datetime import date , datetime
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -52,10 +56,15 @@ def importa_CVS(f):
         
         
     
-
+@login_required
 def branco(request):
     return render_to_response('google/blank.html')
 
+@login_required
+def construcao(request):
+    return render_to_response('google/construcao.html')
+
+@login_required
 def upload_CVS(request):
     """
     LEMBRAR DE REALIZAR ALTERAÇÕES... ESTÁ SENDO FEITIO UTILIZANDNO O CAMINHO FELIZ
@@ -94,6 +103,7 @@ def upload_CVS(request):
     c.update({'form':form })
     return render(request, 'google/uploadCvs.html', c )
 
+@login_required
 def GerarKML(lista):
     anterior = None
     alt_pt = 0
@@ -135,7 +145,7 @@ def GerarKML(lista):
             pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora)+"\n"+"Local: "+ str(elemento.origem)    
     
 
-
+@login_required
 def listarDados(request):
     """
     Lembrar de fazer as alterações para buscar objetos relacionados a pessoa
@@ -281,13 +291,29 @@ def listarnovo(request):
     c.update({'lista':location })
     return render(request, 'google/lista_novo.html', c)
 
-
-
-
-class ListarDados(generic.ListView):
-    template_name='google/lista.html'
-    context_object_name = 'lista'
+def loginK(request):
     
-    def get_queryset(self):
-        return LocationHistory.objects.order_by('-dataCriacao')
+    c= {}
+    c.update(csrf(request))
     
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                form = FiltroForm()
+                c.update({'form':form})
+                return render(request,'google/lista.html' , c)
+            else:
+                return render(request,'google/login.html', c )
+        else:
+            return render(request,'google/login.html', c )
+    return render(request,'google/login.html', c)
+ 
+@login_required
+def logoffK(request):
+    logout(request)
+    return render(request, 'google/login.html')          
+       

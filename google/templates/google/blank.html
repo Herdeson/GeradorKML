@@ -28,31 +28,38 @@
                 </button>
                 <a class="navbar-brand" href="index.html">Início</a> 
             </div>
-  <div style="color: white;
+            {% if user.is_authenticated %}
+            <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> {{ user.username }} <a href="/logoff" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+            
+
+            {% endif %}
+  
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src={% static "assets/img/find_user.png" %} class="user-image img-responsive"/>
+                    <img src={% static "assets/img/fundo1.png" %} class="user-image img-responsive"/>
 					</li>
 				
-					
-                    <li>
-                        <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-3x"></i> Brandão<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Importar Excel</a>
+                                <a href="/google/construcao">Tim</a>
                             </li>
                             <li>
-                                <a href="#">Gerar KML</a>
+                                <a href="/google/construcao">Claro</a>
+                            </li>
+                            <li>
+                                <a href="/google/construcao">Vivo</a>
+                            </li>
+                            <li>
+                                <a href="/google/construcao">Oi</a>
                             </li>
                         </ul>
                       </li>
@@ -64,25 +71,6 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                             </li>
                             <li>
                                 <a href="/google/listar">Location History</a>
-                            </li>
-                            <li>
-                                <a href="#">Gerar KML</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
-
-                                </ul>
-                               
                             </li>
                         </ul>
                       </li>  
