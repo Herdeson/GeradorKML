@@ -117,8 +117,7 @@
 
     {% if lista.has_next %}
          <li><a href="?page={{ lista.next_page_number }}">{{ lista.next_page_number }}</a></li>
-         <li><a href="?page={{ lista.paginator.num_pages }}">{{ lista.paginator.num_pages }}</a></li>
-         <li><a href="?page={{ lista.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>   
+         <li><a href="?page={{ lista.paginator.num_pages }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>   
     {% else %}
         <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
     {% endif %}

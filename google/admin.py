@@ -1,8 +1,11 @@
-from django.contrib import admin
-from import_export import resources
-from .models import LocationHistory
+# -*- coding: utf-8 -*-
 # Register your models here.
-class Location(resources.ModelResource):
-    
-    class Meta:
-        model = LocationHistory
+from django.contrib import admin
+from .models import LocationHistory
+
+
+class LocationHisAdmin(admin.ModelAdmin):
+    list_display = ('conta', 'latitude', 'longitude', 'origem',  'turno', 'modificador', )
+
+
+admin.site.register(LocationHistory, LocationHisAdmin)

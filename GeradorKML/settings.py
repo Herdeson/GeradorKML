@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'google',
-#    'debug_toolbar',
+   'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'GeradorKML.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'gerdorkml',
+        'NAME': 'GerdorKML',
     'USER': 'postgres',
     'PASSWORD': 'postgres',
     'HOST': 'localhost',
