@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
-from django.views import generic
 from django.template.context_processors import csrf
-from django.template import RequestContext
 import csv
 import os
 import simplekml
 from .forms import UploadCvs, FiltroForm
 from .models import LocationHistory
 from GeradorKML.settings import MEDIA_ROOT
-from datetime import date , datetime
+from datetime import  datetime
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 
 # Create your views here.
 
 
-def importa_CVS(f):
+def importa_CVS(id_user, f):
     aberto = csv.reader(open(f,"rb"))
     
     for row in aberto:
@@ -39,6 +37,7 @@ def importa_CVS(f):
         novo.device_tag = row[7]
         novo.plataforma = row[8]
         
+        novo.modificador = User.objects.get(id = id_user)
         novo.status = True
         
         if(novo.hora >= '07:00' and novo.hora <'12:00'):
@@ -87,7 +86,7 @@ def upload_CVS(request):
             #Fazer alguma coisa com o arquivo salva ou processa ele
             #No caso processa para inserir no banco de dados
             #print type(request.FILES['arquivo'])
-            importa_CVS(arquivo)
+            importa_CVS(request.user.id, arquivo)
             #Deletar o arquivo que foi realizado Upload
             os.remove(arquivo)
             
@@ -103,7 +102,7 @@ def upload_CVS(request):
     c.update({'form':form })
     return render(request, 'google/uploadCvs.html', c )
 
-@login_required
+
 def GerarKML(lista):
     anterior = None
     alt_pt = 0
@@ -132,8 +131,6 @@ def GerarKML(lista):
                 kml.save(MEDIA_ROOT+"/"+  str(anterior) +".kml")
                 
         else:
-
-            
             kml.save(MEDIA_ROOT+"/"+ str(anterior)+".kml")
             
             kml = simplekml.Kml()
@@ -190,7 +187,11 @@ def listarDados(request):
                 
                 request.session['dtInicio'] = form.data['dtInicio']
                 request.session['dtFim'] = form.data['dtFim']
-
+             
+            #Listar somente os que foram adicionados para o usuario    
+            lista = lista.filter(modificador = request.user.id)
+            
+            #Define se é somente para listar ou para gerar o kml
             if 'filtrar' in request.POST:
                 paginator = Paginator(lista , 15)
                 
@@ -205,7 +206,8 @@ def listarDados(request):
         
             elif 'gerar' in request.POST:
                 GerarKML(lista)
-                return HttpResponseRedirect("branco")
+                c.update({'form':form})
+                return render(request, 'google/lista.html', c)
 
             
     elif request.GET and request.session.has_key('consulta'):
@@ -234,8 +236,9 @@ def listarDados(request):
                 lista = LocationHistory.objects.filter(data__range=(inicio, fim))
             else:
                 lista = lista.filter(data__range=(inicio, fim))
+                
 
-                        
+        lista = lista.filter(modificador = request.user.id)            
         paginator = Paginator(lista , 15)
         page = request.GET.get('page')
             
@@ -254,7 +257,7 @@ def listarDados(request):
         
     
     
-    lista = LocationHistory.objects.order_by('dataCriacao')
+    lista = LocationHistory.objects.filter(modificador = request.user.id).order_by('dataCriacao')
     
     paginator = Paginator(lista , 15)
     page = request.GET.get('page')

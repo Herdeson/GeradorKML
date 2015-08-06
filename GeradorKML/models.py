@@ -18,3 +18,5 @@ class Controle(models.Model):
     
     class Meta:
         abstract = True
+        
+

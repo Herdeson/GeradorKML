@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_129">
+        <Style id="stylesel_125">
+            <IconStyle id="substyle_125">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_125">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-05-04
+Hora: 13:19:47.648000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Placemark id="feat_130">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_125</styleUrl>
+            <Point id="geom_125">
+                <coordinates>-42.83011,-5.0561726,0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

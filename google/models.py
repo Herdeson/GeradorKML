@@ -22,4 +22,6 @@ class LocationHistory(Controle):
         return self.conta
     
 
+class ArqGerados(Controle):
+    arquivo = models.FilePathField()
 

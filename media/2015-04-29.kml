@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_181">
+        <Style id="stylesel_173">
+            <IconStyle id="substyle_173">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_173">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 15:13:44.407000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_174">
+            <IconStyle id="substyle_174">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_174">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 15:09:03.175000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_175">
+            <IconStyle id="substyle_175">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_175">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:47:33.510000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_176">
+            <IconStyle id="substyle_176">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_176">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:42:48.411000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_177">
+            <IconStyle id="substyle_177">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_177">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:38:01.518000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_178">
+            <IconStyle id="substyle_178">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_178">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:37:01.489000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_179">
+            <IconStyle id="substyle_179">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_179">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:36:01.473000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_180">
+            <IconStyle id="substyle_180">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_180">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:35:01.388000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_181">
+            <IconStyle id="substyle_181">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_181">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:34:00.447000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_182">
+            <IconStyle id="substyle_182">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_182">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:30:59.411000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_183">
+            <IconStyle id="substyle_183">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_183">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:29:59.362000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_184">
+            <IconStyle id="substyle_184">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_184">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 13:28:57.430000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_185">
+            <IconStyle id="substyle_185">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_185">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:51:20.365000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_186">
+            <IconStyle id="substyle_186">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_186">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:50:19.835000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_187">
+            <IconStyle id="substyle_187">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_187">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:49:18.382000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_188">
+            <IconStyle id="substyle_188">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_188">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:44:32.398000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_189">
+            <IconStyle id="substyle_189">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_189">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:39:46.392000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_190">
+            <IconStyle id="substyle_190">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_190">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:35:01.349000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_191">
+            <IconStyle id="substyle_191">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_191">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:34:00.097000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_192">
+            <IconStyle id="substyle_192">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_192">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:32:59.737000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_193">
+            <IconStyle id="substyle_193">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_193">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:31:59.388000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_194">
+            <IconStyle id="substyle_194">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_194">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:30:59.351000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_195">
+            <IconStyle id="substyle_195">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_195">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:29:58.791000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_196">
+            <IconStyle id="substyle_196">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_196">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:28:58.761000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_197">
+            <IconStyle id="substyle_197">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_197">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:27:58.714000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_198">
+            <IconStyle id="substyle_198">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_198">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:26:58.404000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_199">
+            <IconStyle id="substyle_199">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_199">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:25:57.498000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Style id="stylesel_200">
+            <IconStyle id="substyle_200">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="link_200">
+                    <href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+                </Icon>
+            </IconStyle>
+            <BalloonStyle>
+                <text>Data: 2015-04-29
+Hora: 12:24:57.889000
+Local: CELL</text>
+                <displayMode>default</displayMode>
+            </BalloonStyle>
+        </Style>
+        <Placemark id="feat_182">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_173</styleUrl>
+            <Point id="geom_173">
+                <coordinates>-42.8007593,-5.0245613,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_183">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_174</styleUrl>
+            <Point id="geom_174">
+                <coordinates>-42.8007593,-5.0245613,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_184">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_175</styleUrl>
+            <Point id="geom_175">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_185">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_176</styleUrl>
+            <Point id="geom_176">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_186">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_177</styleUrl>
+            <Point id="geom_177">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_187">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_178</styleUrl>
+            <Point id="geom_178">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_188">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_179</styleUrl>
+            <Point id="geom_179">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_189">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_180</styleUrl>
+            <Point id="geom_180">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_190">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_181</styleUrl>
+            <Point id="geom_181">
+                <coordinates>-42.768507,-5.0349628,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_191">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_182</styleUrl>
+            <Point id="geom_182">
+                <coordinates>-42.800523,-5.0244987,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_192">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_183</styleUrl>
+            <Point id="geom_183">
+                <coordinates>-42.800523,-5.0244987,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_193">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_184</styleUrl>
+            <Point id="geom_184">
+                <coordinates>-42.800523,-5.0244987,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_194">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_185</styleUrl>
+            <Point id="geom_185">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_195">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_186</styleUrl>
+            <Point id="geom_186">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_196">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_187</styleUrl>
+            <Point id="geom_187">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_197">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_188</styleUrl>
+            <Point id="geom_188">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_198">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_189</styleUrl>
+            <Point id="geom_189">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_199">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_190</styleUrl>
+            <Point id="geom_190">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_200">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_191</styleUrl>
+            <Point id="geom_191">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_201">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_192</styleUrl>
+            <Point id="geom_192">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_202">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_193</styleUrl>
+            <Point id="geom_193">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_203">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_194</styleUrl>
+            <Point id="geom_194">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_204">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_195</styleUrl>
+            <Point id="geom_195">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_205">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_196</styleUrl>
+            <Point id="geom_196">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_206">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_197</styleUrl>
+            <Point id="geom_197">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_207">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_198</styleUrl>
+            <Point id="geom_198">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_208">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_199</styleUrl>
+            <Point id="geom_199">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_209">
+            <name>loko@gmail.com</name>
+            <styleUrl>#stylesel_200</styleUrl>
+            <Point id="geom_200">
+                <coordinates>-42.8007592,-5.0245616,0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
