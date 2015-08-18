@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.template.context_processors import csrf
 import csv
+import zipstream
 import os
 import simplekml
 from .forms import UploadCvs, FiltroForm
-from .models import LocationHistory
+from .models import LocationHistory, ArqGerados
 from GeradorKML.settings import MEDIA_ROOT
-from datetime import  datetime
+from datetime import  datetime, date
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from zipfile import ZIP_DEFLATED
 
 
 # Create your views here.
@@ -102,8 +104,24 @@ def upload_CVS(request):
     c.update({'form':form })
     return render(request, 'google/uploadCvs.html', c )
 
+def Salvar_KML(kml , nome ,user ):
+    directory = MEDIA_ROOT+"/"+str(user.id)
+    #Verifica se o diretorio na pasta media existe para o usuario
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    kml.save(directory+"/"+nome+".kml")
+    
+    #Inserir no Banco a lista de arquivos
+    arq = ArqGerados()
+    arq.status = True
+    arq.modificador = User.objects.get(id = user.id)
+    arq.arquivo = directory+"/"+nome+".kml"
+    
+    arq.save()
+    
 
-def GerarKML(lista):
+def GerarKML(lista , user ):
     anterior = None
     alt_pt = 0
     
@@ -128,10 +146,12 @@ def GerarKML(lista):
             pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora) +"\n"+"Local: "+ str(elemento.origem)
             
             if elemento.id == ultimo.id:
-                kml.save(MEDIA_ROOT+"/"+  str(anterior) +".kml")
+                Salvar_KML(kml, str(anterior), user)
+                #kml.save(MEDIA_ROOT+"/"+  str(anterior) +".kml")
                 
         else:
-            kml.save(MEDIA_ROOT+"/"+ str(anterior)+".kml")
+            Salvar_KML(kml, str(anterior), user)
+            #kml.save(MEDIA_ROOT+"/"+ str(anterior)+".kml")
             
             kml = simplekml.Kml()
             anterior = elemento.data
@@ -140,7 +160,25 @@ def GerarKML(lista):
             pnt = kml.newpoint( name = elemento.conta , coords=[(centro_long, centro_lat, alt_pt)])
             pnt.style.iconstyle.icon.href = "http://maps.google.com/mapfiles/kml/paddle/T.png"
             pnt.style.balloonstyle.text = 'Data: '+ str(anterior) +"\n"+"Hora: "+ str(elemento.hora)+"\n"+"Local: "+ str(elemento.origem)    
+
+
+def returnZip(request):
+    hj = date.today()
+    arquivos = ArqGerados.objects.filter(modificador = request.user.id , dataCriacao = hj)
+
+    zip_subdir = "Arquivos_KML"
+    z = zipstream.ZipFile(mode='w', compression=ZIP_DEFLATED)
+    for arq in arquivos:
+        fdir, fname = os.path.split(arq.arquivo)
+        zip_path = os.path.join(zip_subdir, fname)
+        z.write(arq.arquivo,zip_path )
+        
+        #os.remove(arq.arquivo)
+        
     
+    response = StreamingHttpResponse(z, content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename={}'.format('files.zip')
+    return response
 
 @login_required
 def listarDados(request):
@@ -205,9 +243,11 @@ def listarDados(request):
                 return render(request, 'google/lista.html', c)
         
             elif 'gerar' in request.POST:
-                GerarKML(lista)
-                c.update({'form':form})
-                return render(request, 'google/lista.html', c)
+                GerarKML(lista, request.user )
+                return returnZip(request)
+                
+                #c.update({'form':form})
+                #return render(request, 'google/lista.html', c)
 
             
     elif request.GET and request.session.has_key('consulta'):

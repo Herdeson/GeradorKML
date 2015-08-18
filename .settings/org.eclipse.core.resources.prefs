@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//GeradorKML/models.py=utf-8
+encoding//google/admin.py=utf-8
 encoding//google/forms.py=utf-8
+encoding//google/migrations/0005_auto_20150713_1246.py=utf-8
 encoding//google/models.py=utf-8
 encoding//google/views.py=utf-8
