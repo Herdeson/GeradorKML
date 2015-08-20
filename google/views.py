@@ -2,7 +2,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.template.context_processors import csrf
-import csv
+#import csv
 import zipstream
 import os
 import simplekml
@@ -15,11 +15,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from zipfile import ZIP_DEFLATED
+#from .tasks import importa_CVS
+import celery
 
 
 # Create your views here.
 
-
+"""
 def importa_CVS(id_user, f):
     aberto = csv.reader(open(f,"rb"))
     
@@ -54,7 +56,7 @@ def importa_CVS(id_user, f):
         
         
         novo.save()
-        
+"""        
         
     
 @login_required
@@ -88,9 +90,10 @@ def upload_CVS(request):
             #Fazer alguma coisa com o arquivo salva ou processa ele
             #No caso processa para inserir no banco de dados
             #print type(request.FILES['arquivo'])
-            importa_CVS(request.user.id, arquivo)
+            celery.send_task("tasks.add", [2, 2])
+            importa_CVS.delay(request.user.id, arquivo)
             #Deletar o arquivo que foi realizado Upload
-            os.remove(arquivo)
+            #os.remove(arquivo)
             
             #hj = date.today()
             #lista = LocationHistory.objects.filter(dataCriacao = hj)

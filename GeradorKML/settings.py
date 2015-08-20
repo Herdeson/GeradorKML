@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'google',
-   'debug_toolbar',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,6 +88,12 @@ DATABASES = {
 }
 
 
+import djcelery
+djcelery.setup_loader()
+
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+
+CELERY_ALWAYS_EAGER = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
