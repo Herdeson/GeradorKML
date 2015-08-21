@@ -5,12 +5,12 @@ Created on 20/08/2015
 @author: herdeson
 '''
 
-from celery import shared_task, task
+from celery import  task
 from django.contrib.auth.models import User
 from .models import LocationHistory
 import csv
 
-@task(ignore_result=True)
+
 def importa_CVS(id_user, f):
     aberto = csv.reader(open(f,"rb"))
     
@@ -20,7 +20,6 @@ def importa_CVS(id_user, f):
                 
         novo = LocationHistory()
         novo.conta = row[0]
-        #novo.data = datetime.strptime(row[1], '%Y-%m-%d').date()
         novo.data = row[1]
         novo.hora = row[2]
         novo.latitude = row[3]
@@ -41,7 +40,11 @@ def importa_CVS(id_user, f):
             novo.turno = '3' #Noite
         else:
             novo.turno = '4'
-            
-        
         
         novo.save()
+
+@task(ignore_result=True)
+def tarefa_importar(id_user, filename):
+    importa_CVS(id_user, filename)
+        
+    

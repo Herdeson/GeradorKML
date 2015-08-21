@@ -15,8 +15,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from zipfile import ZIP_DEFLATED
-#from .tasks import importa_CVS
-import celery
+from google.tasks import tarefa_importar
+
 
 
 # Create your views here.
@@ -90,8 +90,8 @@ def upload_CVS(request):
             #Fazer alguma coisa com o arquivo salva ou processa ele
             #No caso processa para inserir no banco de dados
             #print type(request.FILES['arquivo'])
-            celery.send_task("tasks.add", [2, 2])
-            importa_CVS.delay(request.user.id, arquivo)
+            #celery.send_task("tasks.add", [2, 2])
+            tarefa_importar.delay(request.user.id, arquivo)
             #Deletar o arquivo que foi realizado Upload
             #os.remove(arquivo)
             

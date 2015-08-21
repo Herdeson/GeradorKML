@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import djcelery
+djcelery.setup_loader()
+
 
 # Application definition
 
@@ -40,6 +43,8 @@ INSTALLED_APPS = (
     'google',
     'djcelery',
 )
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -88,12 +93,11 @@ DATABASES = {
 }
 
 
-import djcelery
-djcelery.setup_loader()
 
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 
-CELERY_ALWAYS_EAGER = True
+BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672//'
+
+#CELERY_ALWAYS_EAGER = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
