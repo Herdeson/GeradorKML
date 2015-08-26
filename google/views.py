@@ -57,6 +57,8 @@ def importa_CVS(id_user, f):
         
         novo.save()
 """        
+
+
         
     
 @login_required
@@ -87,20 +89,11 @@ def upload_CVS(request):
                 for chunk in request.FILES['arquivo'].chunks():
                     destination.write(chunk)
             
-            #Fazer alguma coisa com o arquivo salva ou processa ele
-            #No caso processa para inserir no banco de dados
-            #print type(request.FILES['arquivo'])
-            #celery.send_task("tasks.add", [2, 2])
+
             tarefa_importar.delay(request.user.id, arquivo)
-            #Deletar o arquivo que foi realizado Upload
-            #os.remove(arquivo)
-            
-            #hj = date.today()
-            #lista = LocationHistory.objects.filter(dataCriacao = hj)
-            #form = FiltroForm()
-            #c.update({'lista':lista,'form':form })
-            return HttpResponseRedirect('listarGoogle')
-            #return render_to_response('google/lista.html', c )
+         
+            return render(request, 'google/pos_envio.html')
+ 
             
     
     form = UploadCvs()

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-s
+# -*- coding: utf-8 -*-
 '''
 Created on 20/08/2015
 
@@ -7,9 +7,17 @@ Created on 20/08/2015
 
 from celery import  task
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from .models import LocationHistory
+from django.conf import settings
 import csv
+import os
 
+
+def avisar(arquivo, email_destino):
+    fdir, fname = os.path.split(arquivo)
+    menssagem = 'Os dados referente ao arquivo %s foram inseridos com sucesso.' % fname.upper()
+    send_mail("[AVISO] DADOS INSERIDOS", menssagem, settings.EMAIL_HOST_USER, [email_destino], fail_silently=False)
 
 def importa_CVS(id_user, f):
     aberto = csv.reader(open(f,"rb"))
@@ -42,6 +50,10 @@ def importa_CVS(id_user, f):
             novo.turno = '4'
         
         novo.save()
+        
+    os.remove(f)
+    avisar(f, novo.modificador.email)
+    
 
 @task(ignore_result=True)
 def tarefa_importar(id_user, filename):

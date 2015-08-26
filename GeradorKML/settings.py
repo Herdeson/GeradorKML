@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for GeradorKML project.
 
@@ -94,8 +95,23 @@ DATABASES = {
 
 
 
-
+#Broker utilizado para enfilerar tarefas da importação
 BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672//'
+
+
+#Utilizado para Envio de Email pela aplicação
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'geradorkml@gmail.com'
+EMAIL_HOST_PASSWORD = 'aquiepcpi*2015'
+DEFAULT_FROM_EMAIL = 'Gerador <geradorkml@gmail.com>'
+
+
+
+
+
 
 #CELERY_ALWAYS_EAGER = True
 # Internationalization
