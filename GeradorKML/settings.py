@@ -93,7 +93,10 @@ DATABASES = {
     }
 }
 
-
+#Auth settings
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 
 #Broker utilizado para enfilerar tarefas da importação
 BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672//'

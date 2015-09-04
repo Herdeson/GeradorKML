@@ -344,15 +344,16 @@ def loginK(request):
                 login(request, user)
                 form = FiltroForm()
                 c.update({'form':form})
+                request.session.set_expiry(0)
                 return render(request,'google/lista.html' , c)
             else:
                 return render(request,'google/login.html', c )
         else:
             return render(request,'google/login.html', c )
-    return render(request,'google/login.html', c)
+    return render(request,'google/login_novo.html', c)
  
 @login_required
 def logoffK(request):
     logout(request)
-    return render(request, 'google/login.html')          
+    return render(request, 'google/login_novo.html')          
        
