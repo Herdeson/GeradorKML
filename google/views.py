@@ -2,7 +2,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.template.context_processors import csrf
-#import csv
+import csv
 import zipstream
 import os
 import simplekml
@@ -21,7 +21,7 @@ from google.tasks import tarefa_importar
 
 # Create your views here.
 
-"""
+
 def importa_CVS(id_user, f):
     aberto = csv.reader(open(f,"rb"))
     
@@ -56,7 +56,7 @@ def importa_CVS(id_user, f):
         
         
         novo.save()
-"""        
+        
 
 
         
@@ -90,7 +90,8 @@ def upload_CVS(request):
                     destination.write(chunk)
             
 
-            tarefa_importar.delay(request.user.id, arquivo)
+            #tarefa_importar.delay(request.user.id, arquivo)
+            #importa_CVS(request.user.id, arquivo)
          
             return render(request, 'google/pos_envio.html')
  
@@ -249,11 +250,13 @@ def listarDados(request):
     elif request.GET and request.session.has_key('consulta'):
         if request.session.has_key('conta'):
             lista = LocationHistory.objects.filter(conta__icontains = request.session.get('conta'))
+        """
         if request.session.has_key('periodo'):
             if lista is None:
                 lista = LocationHistory.objects.filter(turno = request.session.get('periodo'))
             else:
-                lista = lista.filter(turno = request.session.get('periodo')) 
+                lista = lista.filter(turno = request.session.get('periodo'))
+        """ 
         if request.session.has_key('wifi') and not request.session.has_key('cell'):
             if lista is None:
                 lista = LocationHistory.objects.filter(origem = 'WIFI')
