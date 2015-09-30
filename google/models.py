@@ -8,13 +8,13 @@ from .forms import TURNO
 class LocationHistory(Controle):
     conta = models.CharField(max_length=50)
     data = models.DateField()
-    hora = models.TimeField()
+    hora = models.TimeField(null=True,blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    raio_mapa = models.IntegerField()
+    raio_mapa = models.IntegerField(null=True,blank=True)
     origem = models.CharField(max_length=10)
-    device_tag = models.IntegerField()
-    plataforma = models.CharField(max_length=150)
+    device_tag = models.IntegerField(null=True,blank=True)
+    plataforma = models.CharField(max_length=150, null=True,blank=True)
     turno = models.CharField(blank=True, null=True, max_length= 1, choices=TURNO)
     
     

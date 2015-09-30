@@ -90,7 +90,7 @@ def upload_CVS(request):
                     destination.write(chunk)
             
 
-            #tarefa_importar.delay(request.user.id, arquivo)
+            tarefa_importar.delay(request.user.id, arquivo)
             #importa_CVS(request.user.id, arquivo)
          
             return render(request, 'google/pos_envio.html')
@@ -194,7 +194,7 @@ def listarDados(request):
             if 'conta' in form.changed_data:
                 lista = LocationHistory.objects.filter(conta__icontains = form.data['conta'])
                 request.session['conta'] = form.data['conta']
-            if 'periodo' in form.changed_data:
+            if 'periodo' in form.changed_data and form.data['periodo'] != '':
                 request.session['periodo'] = form.data['periodo']
                 if lista is None:
                     lista = LocationHistory.objects.filter(turno = form.data['periodo'])
@@ -296,7 +296,7 @@ def listarDados(request):
         
     
     
-    lista = LocationHistory.objects.filter(modificador = request.user.id).order_by('dataCriacao')
+    lista = LocationHistory.objects.filter(modificador = request.user.id).order_by('data')
     
     paginator = Paginator(lista , 15)
     page = request.GET.get('page')
@@ -310,6 +310,8 @@ def listarDados(request):
     
     c.update({'lista':location , 'form':form})
     return render(request, 'google/lista.html', c)
+
+
 
 def listarnovo(request):
     """

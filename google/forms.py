@@ -8,6 +8,7 @@ from django import forms
 
 
 TURNO = (
+            ('','------'),
            ('1', 'Manhã'),
            ('2', 'Tarde'),
            ('3', 'Noite'),
